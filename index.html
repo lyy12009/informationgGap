@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🧩 華語 Information Gap 雙引擎編譯器 (賽局談判終極版)</title>
+    <title>🧩 華語 Information Gap 雙引擎編譯器 (全維度咬合 + AI 適配版)</title>
     <style>
         :root { 
             --primary: #2C3E50; 
             --secondary: #e67e22; 
             --tertiary: #18BC9C; 
-            --warning: #d35400; 
+            --danger: #c0392b;
             --bg: #F8F9FA; 
             --border: #E0E0E0; 
         }
@@ -96,7 +96,7 @@
             padding: 12px; 
             border-radius: 4px; 
             margin-top: 15px; 
-            color: var(--warning); 
+            color: var(--danger); 
             font-size: 0.95rem; 
         }
         .advanced-toggle ul { 
@@ -120,16 +120,9 @@
         button:hover { 
             opacity: 0.9; 
         }
-        .btn-probe { 
-            background-color: var(--secondary); 
-        }
-        .btn-compile { 
-            background-color: var(--tertiary); 
-        }
-        .btn-copy { 
-            background-color: var(--primary); 
-            margin-top: 10px; 
-        }
+        .btn-probe { background-color: var(--secondary); }
+        .btn-compile { background-color: var(--tertiary); }
+        .btn-copy { background-color: var(--primary); margin-top: 10px; }
         .output-box { 
             background-color: #2b2b2b; 
             color: #a9b7c6; 
@@ -138,13 +131,21 @@
             margin-top: 10px; 
             font-size: 13px;
         }
+        .model-selector {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #bce0fd;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
 
     <h1>🧩 華語 Information Gap 雙引擎編譯器</h1>
-    <p style="text-align: center; color: #666;">內建「籌碼轉換」、「微觀資訊交錯」與「帕雷托優序」約束，杜絕偽談判死局。</p>
+    <p style="text-align: center; color: #666;">內建「多型語意優序」、「數學守恆」與「特定 AI 動態約束」，鎖死因果律的終極賽局模型。</p>
     
+    <!-- 階段一：文本輸入與生成探測 Prompt -->
     <div class="card">
         <h2><span class="step-badge">1</span> 文本輸入與邏輯探測 (AI 判定)</h2>
         <label for="sourceText">請貼上原始華語教材文本：</label>
@@ -153,12 +154,13 @@
         <button class="btn-probe" onclick="generateProbePrompt()">1. 生成【AI 邏輯判定】Prompt</button>
         
         <div id="probeArea" style="display:none; margin-top: 15px;">
-            <label>📋 請複製以下指令，貼給 AI 以取得判定結果：</label>
+            <label>📋 請複製以下指令，貼給 AI 以取得精準判定：</label>
             <textarea id="probePrompt" class="output-box" readonly></textarea>
             <button class="btn-copy" onclick="copyText('probePrompt')">複製探測 Prompt</button>
         </div>
     </div>
 
+    <!-- 階段二：接收 AI 判定並綁定變數 -->
     <div class="card stage-ai">
         <h2><span class="step-badge">2</span> 人機協同：變數約束</h2>
         <label for="gapCategory">根據 AI 的回覆，該文本屬於哪一種邏輯斷層？</label>
@@ -179,7 +181,7 @@
         <div id="panel-jigsaw" class="dynamic-panel">
             <h3 style="margin-top:0; color:var(--primary);">拼圖閱讀設定</h3>
             <label>文本切割段數 (即學生人數)：<input type="number" id="jig-cuts" value="2" min="2" max="4"></label>
-            <label>核心斷層設計：
+            <label>核心斷層設計 (綁定選項)：
                 <select id="jig-focus">
                     <option value="因果倒置 (隱藏關鍵原因)">因果倒置 (隱藏關鍵原因)</option>
                     <option value="時間序錯置 (打亂時間箭頭)">時間序錯置 (打亂時間箭頭)</option>
@@ -190,7 +192,7 @@
         <div id="panel-map" class="dynamic-panel">
             <h3 style="margin-top:0; color:var(--primary);">地圖與導航設定</h3>
             <label>實體節點數量：<input type="number" id="map-nodes" value="5" min="3"></label>
-            <label>物理矛盾設定：
+            <label>物理矛盾設定 (綁定選項)：
                 <select id="map-conflict">
                     <option value="捷徑伴隨高風險 vs 遠路但安全">捷徑伴隨高風險 vs 遠路但安全</option>
                     <option value="單向道或施工封閉路段">單向道或施工封閉路段</option>
@@ -205,22 +207,32 @@
         </div>
 
         <div class="advanced-toggle">
-            <strong>⚙️ 系統已強制注入【籌碼轉換與賽局談判規則】</strong>
+            <strong>⚙️ 系統底層約束已啟動</strong>
             <ul>
-                <li><strong>拒絕雙殺死局：</strong> 嚴禁設計無法解套的致命毒藥選項，確保談判不提早破裂。</li>
-                <li><strong>痛點轉化籌碼：</strong> 將缺點轉化為「可交換條件」（如：打工補貼超支、買機車克服不便）。</li>
-                <li><strong>微觀資訊交錯：</strong> 避免區塊式挖空，強制在單一方案細節內進行高頻交錯詢問。</li>
-                <li><strong>實體隔離輸出：</strong> 自動生成 A/B 獨立卷、第二人稱指令與 ✂️ 剪裁線。</li>
+                <li><strong>拒絕全滅死局：</strong> 強制確保至少存在兩條可妥協之路線/方案。</li>
+                <li><strong>數學守恆律：</strong> 資金與時間的缺口必須透過實體籌碼精準相加抵銷。</li>
+                <li><strong>動態優序適應：</strong> 自動判斷連續事件與互斥選擇，轉換 Priority 語意。</li>
             </ul>
         </div>
     </div>
 
+    <!-- 階段三：最終 Prompt 編譯 -->
     <div class="card stage-final">
         <h2><span class="step-badge">3</span> 邏輯重構與最終生成</h2>
-        <button class="btn-compile" onclick="compileFinalPrompt()">2. 編譯【賽局談判學習單】Prompt</button>
+        
+        <div class="model-selector">
+            <label for="targetAI" style="margin-top:0;">🤖 選擇目標 AI 引擎以套用特定演算法約束：</label>
+            <select id="targetAI">
+                <option value="claude">Claude (Anthropic) - 啟用 XML 空間標籤強制約束</option>
+                <option value="chatgpt">ChatGPT (OpenAI) - 啟用扣分懲罰與絕對考官人格綁定</option>
+                <option value="gemini">Gemini (Google) - 啟用 Few-Shot 範例錨定以消除翻譯腔</option>
+            </select>
+        </div>
+
+        <button class="btn-compile" onclick="compileFinalPrompt()">2. 編譯【特定 AI 專用賽局學習單】Prompt</button>
         
         <div id="finalArea" style="display:none; margin-top: 15px;">
-            <label>📋 請將此最終指令貼回給 AI，生成高維度且可直接列印的學習單：</label>
+            <label>📋 請將此最終指令貼回給您選擇的 AI 引擎：</label>
             <textarea id="finalPrompt" class="output-box" readonly></textarea>
             <button class="btn-copy" onclick="copyText('finalPrompt')">複製最終 Prompt</button>
         </div>
@@ -270,65 +282,79 @@ ${text}`;
         function compileFinalPrompt() {
             const text = document.getElementById('sourceText').value;
             const category = document.getElementById('gapCategory').value;
+            const targetAI = document.getElementById('targetAI').value;
+
             if(category === 'none') { alert("請先選擇 AI 判定的類別！"); return; }
 
-            let prompt = `你現在是一位精通「資訊不對稱理論」與「談判賽局」的華語教材專家。請根據以下原始文本與邏輯參數，重構出一份【進階版】的 Information Gap Worksheet。\n\n`;
+            // 1. 建構核心規則模組 (模組化設計)
+            let coreRules = `1. 拒絕雙殺死局 (No Double Veto)：嚴禁設計「絕對完美」的答案，更嚴禁設計「絕對無法克服的致命死局」。任何單一方案不可同時踩到雙方的絕對死穴，必須確保選項皆具備競爭力。\n`;
+            coreRules += `2. 條件降維與籌碼轉換：當方案觸及學生的痛點時，【絕對不可】讓其成為直接淘汰的理由。你必須將其重構為「可交換的籌碼」（如承擔勞務、兼職補貼），強迫學生透過條件句進行利益交換。\n`;
+            coreRules += `3. 資訊碎片化交錯 (Micro-Interlocking)：A 與 B 的空白處必須在「同一個方案的細微數據中」完美交錯，迫使所有節點皆需經過交涉。\n`;
             
-            prompt += `【絕對不可違反之底層邏輯：賽局平衡與籌碼轉換】：\n`;
-            prompt += `1. 拒絕雙殺死局 (No Double Veto)：嚴禁設計「絕對完美」的答案，更嚴禁設計「絕對無法克服的致命死局」。任何單一方案不可同時踩到雙方的絕對死穴，必須確保選項皆具備競爭力。\n`;
-            prompt += `2. 條件降維與籌碼轉換：當方案觸及學生的痛點時，【絕對不可】讓其成為直接淘汰的理由。你必須將其重構為「可交換的籌碼」（如承擔勞務、兼職補貼），強迫學生透過條件句進行利益交換。\n`;
-            prompt += `3. 資訊碎片化交錯 (Micro-Interlocking)：A 與 B 的空白處必須在「同一個方案的細微數據中」完美交錯，迫使所有節點皆需經過交涉。\n`;
-            
-            // --- 🚀 動態 Priority 定義區塊 ---
-            prompt += `4. 決策任務變更：學生的最終任務必須在學習單底部的「共同決策任務」中寫下優序。請嚴格根據以下定義輸出欄位：\n`;
+            coreRules += `4. 決策任務變更：學生的最終任務必須在學習單底部的「共同決策任務」中寫下優序。請嚴格根據以下定義輸出欄位：\n`;
             if (category === 'jigsaw') {
-                // 針對連續時間軸的 Priority 定義
-                prompt += `   - 第一優先保留 (Priority 1)：在時間與體力極限下，哪一個方案是【絕對必須執行、最需投入心力】的核心任務？雙方為此交換了什麼籌碼？\n`;
-                prompt += `   - 可降級備案 (Priority 2)：哪一個方案是【若體力或預算透支，可以隨時放棄、縮短時間或降級執行】的次要任務？\n`;
+                coreRules += `   - 第一優先保留 (Priority 1)：在時間與體力極限下，哪一個方案是【絕對必須執行、最需投入心力】的核心任務？雙方為此交換了什麼籌碼？\n`;
+                coreRules += `   - 可降級備案 (Priority 2)：哪一個方案是【若體力或預算透支，可以隨時放棄、縮短時間或降級執行】的次要任務？\n`;
             } else {
-                // 針對互斥選擇的 Priority 定義 (房子、餐廳、地點)
-                prompt += `   - 第一優先選擇 (Priority 1)：作為最終唯一解，雙方各自退讓了什麼條件才達成的共識？\n`;
-                prompt += `   - 備案選擇 (Priority 2)：若第一選擇突發變故，次佳的妥協替代方案是什麼？\n`;
+                coreRules += `   - 第一優先選擇 (Priority 1)：作為最終唯一解，雙方各自退讓了什麼條件才達成的共識？\n`;
+                coreRules += `   - 備案選擇 (Priority 2)：若第一選擇突發變故，次佳的妥協替代方案是什麼？\n`;
             }
-            prompt += `   - 絕對否決 (Veto)：哪一個方案踩到了絕對無法退讓的底線且無法用數學抵銷，必須立刻刪除？\n\n`;
-            // ------------------------------------
-            prompt += `5. 數值守恆與物理補償原則 (Mathematical Equivalency)：若某方案的缺陷是「預算超支」或「物理極限」，其對應的交換籌碼【絕對不可以】是「心理上的妥協（如：美玲心裡願意接受）」。心理妥協無法改變數學死局。你必須給予「實質的數值補償」（例如：公司提供外派津貼、兼職賺取額外收入），且雙方的數字加減法必須能夠【完美抵銷】超支的缺口，達到精準咬合。\n`;
-            prompt += `【實體輸出與資訊隔離約束 (絕對嚴格執行)】：\n`;
-            prompt += `1. 視角切換：禁止使用上帝視角。你必須產出兩份完全獨立的實體文件：【學生 A 專用卷】與【學生 B 專用卷】。\n`;
-            prompt += `2. 物理剪裁線：在 A 卷與 B 卷之間，必須輸出「--- ✂️ 請沿此線剪開發放 ✂️ ---」作為物理隔離的標記。\n`;
-            prompt += `3. 指導語降維：每一卷的最上方，必須有獨立的「任務指導語」，並使用第二人稱「你」來撰寫（如：「你是...你的任務是...」）。\n`;
-            prompt += `4. 絕對保密原則：A 卷的文字中絕對不可洩漏 B 卷的隱藏動機、限制，反之亦然。\n`;
-            prompt += `5. 禁止教師旁白：除了 A 卷與 B 卷的實體內容外，禁止輸出任何解釋性的廢話或教師指南。\n\n`;
+            coreRules += `   - 絕對否決 (Veto)：哪一個方案踩到了絕對無法退讓的底線且無法用數學抵銷，必須立刻刪除？\n`;
+            coreRules += `5. 數值守恆與物理補償原則 (Mathematical Equivalency)：若某方案的缺陷是「預算超支」或「物理極限」，其對應的交換籌碼【絕對不可以】是「心理上的妥協（如：心裡願意接受）」。心理妥協無法改變數學死局。你必須給予「實質的數值補償」（例如：提供津貼、打工賺錢、分擔勞務減扣時間），且雙方的數字加減法必須能夠【完美抵銷】缺口，達到精準咬合。`;
 
-            prompt += `【原始文本】：\n${text}\n\n`;
-            prompt += `【設計參數與領域邏輯約束】：\n`;
+            // 2. 建構輸出限制模組
+            let outputRules = `1. 視角切換：禁止使用上帝視角。你必須產出兩份完全獨立的實體文件：【學生 A 專用卷】與【學生 B 專用卷】。\n`;
+            outputRules += `2. 物理剪裁線：在 A 卷與 B 卷之間，必須輸出「--- ✂️ 請沿此線剪開發放 ✂️ ---」作為物理隔離的標記。\n`;
+            outputRules += `3. 指導語降維：每一卷的最上方，必須有獨立的「任務指導語」，並使用第二人稱「你」來撰寫。\n`;
+            outputRules += `4. 絕對保密原則：A 卷的文字中絕對不可洩漏 B 卷的隱藏動機、限制，反之亦然。\n`;
+            outputRules += `5. 禁止教師旁白：除了 A 卷與 B 卷的實體內容外，禁止輸出任何解釋性的廢話或教師指南。`;
 
+            // 3. 建構領域參數模組
+            let domainParams = "";
             if (category === 'matrix') {
-                prompt += `- 類型：矩陣填空 (Matrix Gap)
-- 矩陣維度：${document.getElementById('mat-rows').value}行 × ${document.getElementById('mat-cols').value}列
-- 挖空率：${document.getElementById('mat-gap').value}%
-- 約束：A與B的空白欄位在各方案的細節中微觀交錯。雙方的資源限制必須導向「條件式交換」，強迫他們比較不同選項的妥協代價，透過利益交換來排出優先順序。`;
+                domainParams = `- 類型：矩陣填空 (Matrix Gap)\n- 矩陣維度：${document.getElementById('mat-rows').value}行 × ${document.getElementById('mat-cols').value}列\n- 挖空率：${document.getElementById('mat-gap').value}%\n- 約束：A與B的空白欄位在各方案的細節中微觀交錯。雙方的資源限制必須導向「條件式交換」，強迫他們比較不同選項的妥協代價，透過利益交換來排出優先順序。`;
             } else if (category === 'jigsaw') {
-                prompt += `- 類型：拼圖閱讀 (Jigsaw Reading)
-- 切割段數：${document.getElementById('jig-cuts').value}
-- 核心斷層：${document.getElementById('jig-focus').value}
-- 約束：雙方的記憶或客觀證據存在摩擦，沒有 100% 完美的真相。任務是將不同推論的可能性排序（最可能的真相，次可能的真相，絕對不可能的結論），並說明各自採信了對方哪一部分的證據。`;
+                domainParams = `- 類型：拼圖閱讀 (Jigsaw Reading)\n- 切割段數：${document.getElementById('jig-cuts').value}\n- 核心斷層：${document.getElementById('jig-focus').value}\n- 約束：雙方的記憶或客觀證據存在摩擦，沒有 100% 完美的真相。任務是將不同推論的可能性排序，並說明各自採信了對方哪一部分的證據。`;
             } else if (category === 'map') {
-                prompt += `- 類型：地圖與導航 (Spatial Map)
-- 節點數：${document.getElementById('map-nodes').value}
-- 物理矛盾：${document.getElementById('map-conflict').value}
-- 【空間拓樸與物理算術約束 (極度重要)】：
-  1. 嚴禁全滅死局：你設計的路線中，【必須至少有兩條路線】在雙方交換籌碼（如：幫背重裝備、放棄中繼站休息、補貼車費）後，能夠在數學上「精準壓線」通過時間與預算的極限，成為合法的 Priority 1 與 Priority 2。
-  2. 時間與物理勞力的精準換算：若路線因「地形障礙」導致嚴重超時，必須設計「勞力分擔（例如：A 幫 B 負重 X 公斤）」的籌碼，並在文本中明確標示這項勞力能「精準扣減 Y 分鐘的移動時間」。扣減後的最終總時間，必須剛好等於雙方的絕對時間極限，一分不差。
-  3. 財務捷徑的精準咬合：若某條路線的解套方案是「付費捷徑（如直升機、付費接駁車）」，其超支的費用必須【完全等於】A 與 B 手中可釋出資金或津貼的總和。嚴禁留下無法透過數學相加來填補的資金缺口。`;
+                domainParams = `- 類型：地圖與導航 (Spatial Map)\n- 節點數：${document.getElementById('map-nodes').value}\n- 物理矛盾：${document.getElementById('map-conflict').value}\n- 【空間拓樸與物理算術約束 (極度重要)】：\n  1. 嚴禁全滅死局：你設計的路線中，【必須至少有兩條路線】在雙方交換籌碼後，能夠在數學上「精準壓線」通過時間與預算的極限，成為合法的 Priority 1 與 2。\n  2. 時間與勞力的精準換算：若路線導致嚴重超時，必須設計「勞力分擔（如：幫背 X 公斤）」的籌碼，明確標示能「精準扣減 Y 分鐘」。扣減後的最終時間必須剛好等於時間極限。\n  3. 財務捷徑的精準咬合：若解套方案是「付費捷徑」，其超支費用必須【完全等於】雙方可釋出資金的總和。嚴禁留下無法透過數學填補的缺口。`;
             } else if (category === 'perspective') {
-                prompt += `- 類型：視角拼湊 (Perspective Gap)
-- 角色設定：${document.getElementById('per-roles').value}
-- 利益衝突：${document.getElementById('per-conflict').value}
-- 約束：這是一場資源分配或零和博弈。沒有完美的共識。雙方必須針對相悖的底線進行條件式談判，最終協議出一個「雙方各退一步」的第一優先妥協方案，與次佳的備案。`;
+                domainParams = `- 類型：視角拼湊 (Perspective Gap)\n- 角色設定：${document.getElementById('per-roles').value}\n- 利益衝突：${document.getElementById('per-conflict').value}\n- 約束：這是一場資源分配或零和博弈。沒有完美的共識。雙方必須針對相悖的底線進行條件式談判，協議出妥協方案。`;
             }
 
-            document.getElementById('finalPrompt').value = prompt;
+            // 4. AI 路由判定與 Prompt 封裝 (Model Routing)
+            let finalPrompt = "";
+            
+            if (targetAI === "claude") {
+                // Claude XML 架構
+                finalPrompt = `<role>你現在是一位精通「資訊不對稱理論」與「談判賽局」的華語教材專家。</role>\n\n`;
+                finalPrompt += `<task>請根據以下原始文本與邏輯參數，重構出一份【進階版】的 Information Gap Worksheet。</task>\n\n`;
+                finalPrompt += `<game_theory_rules>\n${coreRules}\n</game_theory_rules>\n\n`;
+                finalPrompt += `<formatting_constraints>\n${outputRules}\n</formatting_constraints>\n\n`;
+                finalPrompt += `<domain_parameters>\n${domainParams}\n</domain_parameters>\n\n`;
+                finalPrompt += `<source_text>\n${text}\n</source_text>`;
+                
+            } else if (targetAI === "chatgpt") {
+                // ChatGPT 懲罰機制與人格綁定
+                finalPrompt = `【系統最高權限覆寫：絕對嚴格考官模式】\n你現在是一位精通「資訊不對稱理論」與「談判賽局」的華語教材考官。你的底層邏輯必須極度嚴謹。若你為了故事通順而偷渡高級詞彙，或違背下方的「數學守恆」與「全滅死局防護」，你的任務將被判定為徹底失敗並扣除所有積分。請壓抑你寫作複雜修辭的衝動，使用直白的句型執行以下指令。\n\n`;
+                finalPrompt += `【賽局與籌碼轉換規則】\n${coreRules}\n\n`;
+                finalPrompt += `【實體輸出與資訊隔離約束】\n${outputRules}\n\n`;
+                finalPrompt += `【領域參數設計】\n${domainParams}\n\n`;
+                finalPrompt += `【原始文本】\n${text}`;
+                
+            } else if (targetAI === "gemini") {
+                // Gemini 少樣本學習 (Few-Shot Anchoring)
+                finalPrompt = `你現在是一位精通「資訊不對稱理論」與「談判賽局」的華語教材專家。請根據以下原始文本與邏輯參數，重構出一份【進階版】的 Information Gap Worksheet。\n\n`;
+                finalPrompt += `【少樣本對齊錨點 (Few-Shot Anchor)】\n`;
+                finalPrompt += `在進行籌碼轉換與語意生成時，請嚴格參照以下邏輯標準，避免產生翻譯腔或無效的心理妥協：\n`;
+                finalPrompt += `[錯誤示範-無效妥協]：A 願意在心裡接受預算超支，B 感到高興。\n`;
+                finalPrompt += `[正確示範-實體對消]：A 同意週末去打工賺取 500 元，B 同意動用權限降價 500 元，兩人合力讓預算精準抵銷超支缺口。\n\n`;
+                finalPrompt += `【賽局與籌碼轉換規則】\n${coreRules}\n\n`;
+                finalPrompt += `【實體輸出與資訊隔離約束】\n${outputRules}\n\n`;
+                finalPrompt += `【領域參數設計】\n${domainParams}\n\n`;
+                finalPrompt += `【原始文本】\n${text}`;
+            }
+
+            document.getElementById('finalPrompt').value = finalPrompt;
             document.getElementById('finalArea').style.display = 'block';
         }
 
@@ -336,7 +362,7 @@ ${text}`;
             const textObj = document.getElementById(elementId);
             textObj.select();
             document.execCommand("copy");
-            alert("✅ 複製成功！請貼回給 AI 進行降維打擊與重構。");
+            alert("✅ 複製成功！請將此專屬指令貼回給您選擇的 AI 引擎進行降維重構。");
         }
     </script>
 </body>
